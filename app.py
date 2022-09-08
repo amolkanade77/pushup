@@ -48,5 +48,7 @@ def bot():
    
 @app.route('/displaydata', methods=['GET'])
 def display():
+    print("In Loop")
     users = Profile.query.all()
+    print(users)
     return render_template("admin.html", data=users,len = len(users))
