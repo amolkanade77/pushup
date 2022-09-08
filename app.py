@@ -19,7 +19,7 @@ class Profile(db.Model):
     age = db.Column(db.String(20), unique=False, nullable=False)
 
  
-@app.route("/new")
+@app.route("/")
 def home_view():
      users = Profile.query.all()
      return render_template("admin.html", data=users,len = len(users))
