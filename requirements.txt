@@ -1,4 +1,5 @@
 Flask
 gunicorn
 twilio
-flask-sqlalchemy 
+flask-sqlalchemy
+psycopg2
