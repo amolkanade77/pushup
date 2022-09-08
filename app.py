@@ -6,7 +6,7 @@ from sqlalchemy import SQLAlchemy
  
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql-fitted-59974'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 class Profile(db.Model):
