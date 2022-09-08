@@ -18,11 +18,12 @@ class Profile(db.Model):
     last_name = db.Column(db.String(20), unique=False, nullable=False)
     age = db.Column(db.String(20), unique=False, nullable=False)
 
- 
-@app.route("/")
-def home_view():
-     users = Profile.query.all()
-     return render_template("admin.html", data=users,len = len(users))
+    
+    
+@app.route('/displaydata', methods=['GET'])
+def display():
+    users = Profile.query.all()
+    return render_template("admin.html", data=users,len = len(users))
 
 
 
