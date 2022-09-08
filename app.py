@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATION']= False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql-fitted-59974'
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     shopname=db.Column(db.String(20), unique=False, nullable=False)
