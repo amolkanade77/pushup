@@ -44,3 +44,9 @@ def bot():
     if not responded:
         msg.body('Please place order!')
     return str(resp)
+   
+   
+@app.route('/displaydata', methods=['GET'])
+def display():
+    users = Profile.query.all()
+    return render_template("admin.html", data=users,len = len(users))
