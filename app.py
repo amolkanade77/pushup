@@ -1,7 +1,21 @@
 
 from flask import Flask,request
+from twilio.twiml.messaging_response import MessagingResponse
+
  
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+class Profile(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    shopname=db.Column(db.String(20), unique=False, nullable=False)
+    Orderone = db.Column(db.String(20), unique=False, nullable=False)
+    ornumber =db.Column(db.String(20), unique=False, nullable=False)
+    last_name = db.Column(db.String(20), unique=False, nullable=False)
+    age = db.Column(db.String(20), unique=False, nullable=False)
+
  
 @app.route("/new")
 def home_view():
