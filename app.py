@@ -1,12 +1,12 @@
 
 from flask import Flask,request
 from twilio.twiml.messaging_response import MessagingResponse
-from sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 
  
 app = Flask(__name__)
-
+app.config['SQLALCHEMY_TRACK_MODIFICATION']= False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql-fitted-59974'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
