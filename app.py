@@ -21,7 +21,9 @@ class Profile(db.Model):
  
 @app.route("/new")
 def home_view():
-        return "<h1>Welcome to Geeks for Geeks</h1>"
+     users = Profile.query.all()
+     return render_template("admin.html", data=users,len = len(users))
+
 
 
  
