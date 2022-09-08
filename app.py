@@ -2,7 +2,7 @@
 from flask import Flask,request
 from twilio.twiml.messaging_response import MessagingResponse
 from sqlalchemy import SQLAlchemy
-from app import db
+
 
  
 app = Flask(__name__)
