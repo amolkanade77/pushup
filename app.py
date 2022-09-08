@@ -21,7 +21,7 @@ class Profile(db.Model):
     
     
 @app.route('/displaydata', methods=['GET'])
-def display():
+def home():
     users = Profile.query.all()
     return render_template("admin.html", data=users,len = len(users))
 
