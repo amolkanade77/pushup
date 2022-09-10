@@ -55,3 +55,8 @@ def display():
     users = Profile.query.all()
     print(users)
     return render_template("admin.html", data=users,len = len(users))
+  
+
+@app.route('/', methods=['GET'])
+def homemahakal():
+    return render_template("index.html")
