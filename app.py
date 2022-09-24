@@ -20,9 +20,9 @@ class Profile(db.Model):
     
 class Orderdetails(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    shopname=db.Column(db.String(20), unique=False, nullable=False)
-    cover = db.Column(db.String(20), unique=False, nullable=False)
-    glass =db.Column(db.String(20), unique=False, nullable=False)
+    shopname=db.Column(db.String(156), unique=False, nullable=False)
+    cover = db.Column(db.String(156), unique=False, nullable=False)
+    glass =db.Column(db.String(156), unique=False, nullable=False)
     
 
     
