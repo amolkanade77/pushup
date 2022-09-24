@@ -91,9 +91,9 @@ def upbot():
         #         glass=i
         #         cover='None' 
         glass=list(filter(lambda x: "glass" in x, Finaldata))   
-        glass = '||'.join(str(e) for e in glass)
+        glass = ' '.join(str(e) for e in glass)
         cover=list(filter(lambda x: "cover" in x, Finaldata)) 
-        cover = '||'.join(str(e) for e in cover)
+        cover = ' '.join(str(e) for e in cover)
         
         print("===================>",glass,cover)  
         
