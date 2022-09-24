@@ -2,7 +2,7 @@
 from flask import Flask,request,render_template
 from twilio.twiml.messaging_response import MessagingResponse
 from flask_sqlalchemy import SQLAlchemy
-
+import datetime
 
  
 app = Flask(__name__)
@@ -17,8 +17,15 @@ class Profile(db.Model):
     ornumber =db.Column(db.String(20), unique=False, nullable=False)
     last_name = db.Column(db.String(20), unique=False, nullable=False)
     age = db.Column(db.String(20), unique=False, nullable=False)
-
     
+    
+class Orderdetails(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    shopname=db.Column(db.String(20), unique=False, nullable=False)
+    cover = db.Column(db.String(20), unique=False, nullable=False)
+    glass =db.Column(db.String(20), unique=False, nullable=False)
+    order_date = db.Column(db.DateTime,default=datetime.datetime.utcnow)
+
     
 @app.route('/displaydata', methods=['GET'])
 def home():
@@ -60,3 +67,57 @@ def display():
 @app.route('/', methods=['GET'])
 def homemahakal():
     return render_template("index.html")
+ 
+ 
+ 
+ 
+@app.route('/upbot', methods=['POST'])
+def upbot():
+    incoming_msg = request.values.get('Body', '').lower()
+    resp = MessagingResponse()
+    msg = resp.message()
+    Finaldata=incoming_msg.splitlines()
+    Finaldata = [i for i in Finaldata if i != '']
+    
+    for i in Finaldata:
+        if i.split()[1]=='mobile':
+            mobile=i.split()[1]
+            
+    if 'mobile'in incoming_msg:
+        # for i in Finaldata:
+        #     if "cover" in i:
+        #         cover=i
+        #         glass='None'
+        #     elif "glass" in i:
+        #         glass=i
+        #         cover='None' 
+        glass=list(filter(lambda x: "glass" in x, Finaldata))   
+        glass = '||'.join(str(e) for e in glass)
+        cover=list(filter(lambda x: "cover" in x, Finaldata)) 
+        cover = '||'.join(str(e) for e in cover)
+        
+        print("===================>",glass,cover)  
+        
+        new_user = Orderdetails(shopname=Finaldata[0],glass=glass,cover=cover)    
+        db.session.add(new_user)
+        db.session.commit()
+        quote="Your order saved SucessFully"
+        msg.body(quote)
+        responded = True
+    else:
+        quote="Please place order in format"
+        msg.body(quote)
+        responded = True 
+    if not responded:
+        msg.body('Please place order!')
+        
+    return str(resp)
+    
+    
+@app.route('/newdisplay', methods=['GET'])
+def newdisplay():
+    # users = Orderdetails.query.all().order_by('-id').reverse()
+    users=Orderdetails.query.order_by(Orderdetails.id.desc()).all()
+    return render_template("newdisplay.html", data=users,len = len(users))
+    
+
