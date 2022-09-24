@@ -1,4 +1,3 @@
-
 from flask import Flask,request,render_template
 from twilio.twiml.messaging_response import MessagingResponse
 from flask_sqlalchemy import SQLAlchemy
