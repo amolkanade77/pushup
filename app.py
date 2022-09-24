@@ -45,7 +45,8 @@ def bot():
     responded = False
     if 'shopname' in incoming_msg:      
         new_user = Profile(shopname=Finaldata[0].split('-')[1],Orderone=Finaldata[1].split('-')[1],ornumber=Finaldata[2].split('-')[1],last_name=Finaldata[3].split('-')[1],age=Finaldata[4].split('-')[1])
-        db.session.add(new_user)
+        print(db.session.add(new_user))
+       
         db.session.commit()
         quote="Your order saved SucessFully"
         msg.body(quote)
