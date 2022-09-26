@@ -1,6 +1,7 @@
 from flask import Flask,request,render_template
 from twilio.twiml.messaging_response import MessagingResponse
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
  
 app = Flask(__name__)
@@ -22,6 +23,7 @@ class Orderdetails(db.Model):
     shopname=db.Column(db.String(120), unique=False, nullable=False)
     cover = db.Column(db.String(120), unique=False, nullable=False)
     glass =db.Column(db.String(120), unique=False, nullable=False)
+    order_date = db.Column(db.DateTime,default=datetime.datetime.utcnow)
     
 
     
