@@ -23,6 +23,7 @@ class Orderdetails(db.Model):
     shopname=db.Column(db.String(120), unique=False, nullable=False)
     cover = db.Column(db.String(120), unique=False, nullable=False)
     glass =db.Column(db.String(120), unique=False, nullable=False)
+    custome =db.Column(db.String(20), unique=False, nullable=False)
     order_date = db.Column(db.DateTime,default=datetime.datetime.utcnow)
     
 
