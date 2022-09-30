@@ -97,10 +97,10 @@ def upbot():
         glass = ' '.join(str(e) for e in glass)
         cover=list(filter(lambda x: "cover" in x, Finaldata)) 
         cover = ' '.join(str(e) for e in cover)
-        
-        print("===================>",glass,cover)  
-        
-        new_user = Orderdetails(shopname=Finaldata[0],glass=glass,cover=cover)    
+        if glass and cover is not None:
+            new_user = Orderdetails(shopname=Finaldata[0],glass=glass,cover=cover,custome="None")  
+        else:  
+            new_user = Orderdetails(shopname=Finaldata[0],custome=Finaldata[1],cover="None",glass="None")    
         db.session.add(new_user)
         db.session.commit()
         quote="Your order saved SucessFully"
